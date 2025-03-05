@@ -1,10 +1,11 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './css/Login.css'; // Đảm bảo đường dẫn chính xác
+import Login from './pages/Login'; // Import component Login
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    
+    <Login />
+  </StrictMode>
+);
