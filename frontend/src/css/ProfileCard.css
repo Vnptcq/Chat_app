@@ -1,135 +1,124 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+/* Đảm bảo toàn bộ trang có nền và căn giữa */
 body {
     background-color: #f9f9fa;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
 }
 
-.padding {
-    padding: 3rem !important;
+/* Container chính giữ khung Profile */
+.profile-card-container {
+    justify-content: center; /* Căn giữa ngang */
+    align-items: center; /* Căn giữa dọc */
+    flex-direction: column;
 }
 
-.user-card-full {
-    overflow: hidden;
-}
-
-.card {
-    border-radius: 5px;
-    -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
-    box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+/* Khung Profile Card */
+.profile-card {
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border: none;
-    margin-bottom: 30px;
+    background: #fff;
+    width: 450px; /* Giữ form */
+    overflow: hidden;
+    text-align: center;
 }
 
-.m-r-0 {
-    margin-right: 0px;
+/* Ảnh banner */
+.profile-banner {
+    height: 120px; /* Giữ kích thước chuẩn */
+    object-fit: cover;
 }
 
-.m-l-0 {
-    margin-left: 0px;
+/* Avatar */
+.profile-avatar-wrapper {
+    margin-top: -45px; /* Đẩy avatar lên trên */
+    display: flex;
+    justify-content: center;
 }
 
-.user-card-full .user-profile {
-    border-radius: 5px 0 0 5px;
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.bg-c-lite-green {
-    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
-    background: linear-gradient(to right, #ee5a6f, #f29263);
+/* Phần nội dung profile */
+.profile-card-body {
+    padding: 20px;
 }
 
-.user-profile {
-    padding: 20px 0;
+.profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.card-block {
-    padding: 1.25rem;
-}
-
-.m-b-25 {
-    margin-bottom: 25px;
-}
-
-.img-radius {
-    border-radius: 5px;
-}
-
-h6 {
+.profile-status {
     font-size: 14px;
-}
-
-.card .card-block p {
-    line-height: 25px;
-}
-
-@media only screen and (min-width: 1400px) {
-    p {
-        font-size: 14px;
-    }
-}
-
-.card-block {
-    padding: 1.25rem;
-}
-
-.b-b-default {
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.m-b-20 {
-    margin-bottom: 20px;
-}
-
-.p-b-5 {
-    padding-bottom: 5px !important;
-}
-
-.card .card-block p {
-    line-height: 25px;
-}
-
-.m-b-10 {
     margin-bottom: 10px;
 }
 
-.text-muted {
-    color: #919aa3 !important;
+.profile-status .badge {
+    font-size: 12px;
+    padding: 5px 10px;
 }
 
-.b-b-default {
-    border-bottom: 1px solid #e0e0e0;
+/* Tabs điều hướng */
+.profile-tabs {
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+    padding: 10px;
 }
 
-.f-w-600 {
+.profile-tabs .nav-tabs {
+    display: flex;
+    justify-content: center;
+    border-bottom: none;
+}
+
+.profile-tabs .nav-item {
+    margin: 0 5px;
+}
+
+.profile-tabs .nav-link {
+    color: #555;
+    font-weight: 500;
+    padding: 5px 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.profile-tabs .nav-link.active {
+    background-color: #4EA685;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Nội dung tab */
+.profile-tab-content {
+    padding: 15px;
+}
+
+.profile-tab-pane {
+    text-align: center;
+}
+
+.profile-tab-title {
+    font-size: 16px;
     font-weight: 600;
 }
 
-.m-b-20 {
-    margin-bottom: 20px;
-}
-
-.m-t-40 {
-    margin-top: 20px;
-}
-
-.p-b-5 {
-    padding-bottom: 5px !important;
-}
-
-.m-b-10 {
+.profile-tab-text {
+    font-size: 14px;
+    color: #666;
     margin-bottom: 10px;
 }
 
-.m-t-40 {
-    margin-top: 20px;
-}
-
-.user-card-full .social-link li {
-    display: inline-block;
-}
-
-.user-card-full .social-link li a {
-    font-size: 20px;
-    margin: 0 10px 0 0;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+/* Nút bấm */
+.btn-primary {
+    color: #4EA685;
 }
