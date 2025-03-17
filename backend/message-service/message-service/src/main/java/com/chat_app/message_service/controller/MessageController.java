@@ -29,9 +29,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class MessageController {
 
-    SimpMessagingTemplate messagingTemplate;
     MessagingService messagingService;
-    SimpMessagingTemplate simpMessagingTemplate;
 
     //when connect to server and disconnect to server
 
