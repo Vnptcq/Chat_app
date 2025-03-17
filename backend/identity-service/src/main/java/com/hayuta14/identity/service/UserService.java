@@ -37,7 +37,6 @@ import lombok.extern.slf4j.Slf4j;
 public class UserService {
     UserRepository userRepository;
 
-
     RoleRepository roleRepository;
     UserMapper userMapper;
     ProfileMapper profileMapper;
