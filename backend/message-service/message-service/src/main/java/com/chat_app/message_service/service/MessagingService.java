@@ -16,12 +16,17 @@ import com.chat_app.message_service.repository.MessageRepository;
 import com.chat_app.message_service.repository.UserStatusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContextException;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +36,7 @@ public class MessagingService {
     UserStatusRepository userStatusRepository;
     MessageRepository messageRepository;
     MessageMapper messageMapper;
+    SimpMessagingTemplate simpMessagingTemplate;
 
     public ConnectResponse userConnect(ConnectRequest connectRequest) {
         String userId = connectRequest.getUserId();
@@ -95,7 +101,37 @@ public class MessagingService {
     }
 
     public void sendMessage(MessageSendRequest message) {
-        //webSocketService.sendMessageToUser();
+        //check user online or not
+        UserStatus userStatus = userStatusRepository.findById(message.getReceiverId()).orElseThrow(()-> new RuntimeException("user not found"));
+        //if user online send to user
+        if(userStatus.getStatus().equals(Status.ONLINE.toString())) {
+            simpMessagingTemplate.convertAndSendToUser(message.getReceiverId(), "/queue/messages", message.getData());
+            Message msg = Message.builder()
+                    .senderId(message.getSenderId())
+                    .receiverId(message.getReceiverId())
+                    .data(message.getData())
+                    .type(message.getType())
+                    .timestamp(getTimes())
+                    .status(MessageStatus.RECEIVED.toString())
+                    .build();
+            messageRepository.save(msg);
+        } else {
+            //else if user not online
+            Message msg = Message.builder()
+                    .senderId(message.getSenderId())
+                    .receiverId(message.getReceiverId())
+                    .data(message.getData())
+                    .type(message.getType())
+                    .timestamp(getTimes())
+                    .status(MessageStatus.UNREAD.toString())
+                    .build();
+            messageRepository.save(msg);
+        }
+    }
+
+    private String getTimes(){
+        LocalDateTime now = LocalDateTime.now();
+        return now.toString();
     }
 
     public List<MessageResponse> getMessages(MessageGetRequest message) {

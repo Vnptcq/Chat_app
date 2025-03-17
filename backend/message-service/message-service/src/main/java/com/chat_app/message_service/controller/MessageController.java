@@ -51,27 +51,6 @@ public class MessageController {
     //check message 1-1
 
 
-    //one to one chat
-    @MessageMapping("/chat.sendMessageToUser")
-    public void sendMessageToUser(@Valid MessageSendRequest messageSendRequest) {
-        messagingTemplate.convertAndSend("/topic/chat", messageSendRequest);
-    }
 
-
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-        return chatMessage;
-    }
-
-    @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
-    public ChatMessage addUser(@Payload ChatMessage chatMessage,
-                               SimpMessageHeaderAccessor headerAccessor) {
-        // Add username in web socket session
-        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        System.out.println(headerAccessor.getSessionAttributes());
-        return chatMessage;
-    }
 
 }

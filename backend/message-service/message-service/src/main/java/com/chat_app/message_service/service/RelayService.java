@@ -6,4 +6,7 @@ import org.springframework.stereotype.Service;
 //for unsent message
 @Service
 public class RelayService {
+    public void saveUnseenMessage(String message) {
+
+    }
 }
