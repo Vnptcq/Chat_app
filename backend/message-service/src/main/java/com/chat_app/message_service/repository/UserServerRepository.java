@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserServerRepository extends JpaRepository<UserServer, String> {
+public interface UserServerRepository extends JpaRepository<UserServer, Integer> {
 }
